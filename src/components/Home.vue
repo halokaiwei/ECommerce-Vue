@@ -29,20 +29,7 @@
           </div>
       </div>
 
-      <!-- Item container -->
-    <div class="item-container">
-      <ul class="item-list">
-        <li v-for="item in items" :key="item.id" class="item-card">
-          <div class="item-image">
-            <img :src="item.image" alt="Item Image" />
-          </div>
-          <div class="item-details">
-            <h4>{{ item.name }}</h4>
-            <p>Price: {{ item.price }}</p>
-          </div>
-        </li>
-      </ul>
-    </div>
+    <Items></Items>
 
 
       <!-- Footer -->
@@ -53,6 +40,7 @@
   import { ref, onMounted, onUnmounted } from 'vue'
   import Header from '@/components/Header.vue'
   import Footer from '@/components/Footer.vue'
+  import Items from '@/components/Items.vue'
   import wallpaper1 from '@/assets/images/wallpaper1.jpg'
   import wallpaper2 from '@/assets/images/wallpaper2.jpg'
   import wallpaper3 from '@/assets/images/wallpaper3.jpg'
@@ -84,19 +72,7 @@
       selectedImage.value = images[currentIndex];
   }, 5000); // 5000 milliseconds = 5 seconds
 };
-const items = ref([
-  { id: 1, name: 'Item 1', price: 20, image: '@/assets/images/item1.jpg' },
-  { id: 2, name: 'Item 2', price: 25, image: '@/assets/images/item2.jpg' },
-  { id: 3, name: 'Item 3', price: 30, image: '@/assets/images/item3.jpg' },
-  { id: 4, name: 'Item 4', price: 15, image: '@/assets/images/item4.jpg' },
-  { id: 5, name: 'Item 5', price: 18, image: '@/assets/images/item5.jpg' },
-  { id: 5, name: 'Item 5', price: 18, image: '@/assets/images/item5.jpg' },
-  { id: 5, name: 'Item 5', price: 18, image: '@/assets/images/item5.jpg' },
-  { id: 5, name: 'Item 5', price: 18, image: '@/assets/images/item5.jpg' },
-  { id: 5, name: 'Item 5', price: 18, image: '@/assets/images/item5.jpg' },
 
-  // Add more items as needed
-]);
   // Fetch wallpapers data
   // const fetchWallpapers = () => {
   //   // Perform AJAX request to fetch wallpapers data (simulate PHP logic)

@@ -105,7 +105,7 @@ const uploadImage = async () => {
     });
     alert('Image uploaded successfully');
     if (userStore.user) {
-      userStore.user.image = response.data.imageUrl; // Assuming imageUrl is returned from server
+      userStore.user.image = response.data.imageUrl;
     }
   } catch (error) {
     console.error('Error uploading image:', error);
