@@ -49,5 +49,5 @@
 };
   </script>
   
-  <style scoped src="@/assets/styles/signInStyle.css"></style>
+  <style scoped src="@/assets/styles/signInStyles.css"></style>
   

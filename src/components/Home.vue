@@ -9,7 +9,7 @@
         </div>
         <div id="searchMid">
             <label for="search">
-                <input v-model="searchText" type="text" id="search" placeholder="Search wallpaper here...">
+                <input v-model="searchText" type="text" id="search" placeholder="Search items here...">
             </label>
         </div>
       </div>
@@ -71,11 +71,8 @@
       selectedImage.value = images[index];
   }
 
-
-  // Search text
   const searchText = ref('');
   
-  // Wallpapers data
   const wallpapers = ref([]);
   
   let intervalId;
@@ -112,13 +109,9 @@ const items = ref([
   //   ];
   // };
   
-  const addToWishlist = (wallpaperId, wallpaperImage) => {
-    console.log(`Adding wallpaper ${wallpaperId} to wishlist...`);
-    alert('Wallpaper add to wishlist successfully');
-  };
   
   // Search wallpapers function
-  const searchWallpapers = () => {
+  const searchItems = () => {
     console.log('Searching for:', searchText.value);
   };
   

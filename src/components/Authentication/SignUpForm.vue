@@ -60,6 +60,6 @@
 };
   </script>
   
-  <style scoped src="@/assets/styles/signInStyle.css">
+  <style scoped src="@/assets/styles/signInStyles.css">
 </style>
   
