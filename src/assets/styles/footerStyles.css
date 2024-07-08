@@ -1,0 +1,100 @@
+@import '/node_modules/boxicons/css/boxicons.min.css';
+@media screen and (max-width: 300px) {
+    html {
+        font-size:6px;
+    }
+}
+@media screen and (max-width: 414px) {
+    html {
+        font-size:8px;
+    }
+}
+@media screen and (max-width: 576px) {
+    html {
+        font-size:12px;
+    }
+}
+@media screen and (max-width: 767px) {
+    html {
+        font-size:14px;
+    }
+}
+@media screen and (max-width: 768px) {
+    html {
+        font-size:14px;
+    }
+}
+@media screen and (max-width: 992px) {
+    html {
+        font-size:16px;
+    }
+}
+@media screen and (max-width: 1200px) {
+    html {
+        font-size:18px;
+    }
+} 
+.footer {
+    width: 80%;
+    margin:0 auto;
+    background-color: #131313;
+    color: white;
+    padding: 20px 0; /* 适当调整底部内边距 */
+    text-align: center; /* 文字居中 */
+    z-index: 100; /* 可选：设置 z-index，确保在其他内容之上 */
+}
+
+.footer .social {
+    text-align: center;
+    padding:1.2rem;
+    color: #c2b8c9;
+}
+
+.footer .social a {
+    font-size: 1.5rem;
+    color: #c2b8c9;
+    border: 2px solid #c2b8c9;
+    width: 2.5rem;
+    height: 2.5rem;
+    line-height: 2.56rem;
+    display: inline-block;
+    text-align: center;
+    border-radius: 50%;
+    margin: 0 5px;
+    transition: 0.3s ease-in-out;
+    cursor:pointer;
+}
+
+.footer .social a:hover {
+    transform: scale(1.2)translateY(-10px);
+    background-color: #c2b8c9;
+    color: black;
+    box-shadow: 0 0 25px #c2b8c9;
+}
+
+
+.footer .icon-text {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px; 
+    border-radius: 5px;
+    line-height: 1; 
+}
+
+.footer p {
+    font-size: 0.8rem;
+    color:white;
+}
+
+@media (max-width: 600px) {
+    .footer {
+        margin:0;
+        width: 100%;
+    }
+
+  }

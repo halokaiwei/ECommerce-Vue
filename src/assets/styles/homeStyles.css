@@ -1,0 +1,238 @@
+@media screen and (max-width: 300px) {
+    html {
+        font-size:6px;
+    }
+}
+@media screen and (max-width: 414px) {
+    html {
+        font-size:8px;
+    }
+}
+@media screen and (max-width: 576px) {
+    html {
+        font-size:12px;
+    }
+}
+@media screen and (max-width: 767px) {
+    html {
+        font-size:14px;
+    }
+}
+@media screen and (max-width: 768px) {
+    html {
+        font-size:14px;
+    }
+}
+@media screen and (max-width: 992px) {
+    html {
+        font-size:16px;
+    }
+}
+@media screen and (max-width: 1200px) {
+    html {
+        font-size:18px;
+    }
+} 
+  /* Add your scoped styles here */
+
+#banner {
+    margin:0 auto;
+    width: 80%;
+    height: 4.5rem;
+    background-color: hsl(0, 0%, 7%);
+    color: white;
+    padding: 1rem 0; 
+  }
+  
+  #banner h3 {
+    font-size: 1.2rem;
+    text-align: center;
+    margin: auto;
+    padding: 0;
+  }
+  
+  #bannerWord {
+    max-width: 50rem;
+    margin: 0 auto;
+  }
+
+  #searchMid {
+    position:absolute;
+    top:7rem;
+    left:25%;
+    width: 50%;
+    height: 10%;
+    margin: auto;
+    text-align: center;
+  }
+  
+  #search {
+    margin:auto;
+    height: 2rem;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+
+  .home-container {
+    display: flex;
+    width: 80%;
+    height: 60vh;
+    margin: 1rem auto;
+  }
+  
+  .navigation {
+    width: 30%;
+    background-color: #f4f4f4;
+    padding: 0.5rem;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navigation ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .navigation li {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    background-color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .navigation li:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .content {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+  }
+  
+  .content img {
+    width: 100%;
+    height: 100%;   
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+@media(max-width:700px) {
+    #bannerWord h3 {
+        font-size: 1rem;
+    }
+}
+
+  @media (max-width: 500px) {
+    #banner {
+        margin:0;
+        width: 100%;
+    }
+
+    .home-container {
+      width: 100%;
+    }
+  
+    .navigation {
+      width: 30%;
+      box-shadow: none;
+      margin-bottom: 20px;
+    }
+
+  }
+  
+  .home-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .item-container {
+    margin:0 auto;
+  }
+  
+  @media screen and (max-width: 1200px) {
+    .item-list {
+      width: 80%;
+    }
+  }
+  
+  @media screen and (max-width: 992px) {
+    .item-list {
+      width: 80%;
+    }
+  }
+  
+  @media screen and (max-width: 767px) {
+    .item-list {
+      width: 80%;
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    .item-list {
+      width: 100%;
+    }
+  }
+  
+  @media screen and (max-width: 500px) {
+    .item-list {
+      width: 100%;
+    }
+  }
+  
+  @media screen and (max-width: 414px) {
+    .item-list {
+      width: 100%;
+    }
+  }
+  
+  @media screen and (max-width: 300px) {
+    .item-list {
+      width: 100%;
+    }
+  }
+  .item-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin:0 auto;
+    list-style-type: none;
+    padding: 0;
+    width: 80%;
+  }
+  
+  .item-card {
+    width: calc(20% - 20px); /* 20% width with margin */
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    height: 20rem;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .item-card:first-child, .item-card:nth-child(5n + 6) {
+    margin-left: 1rem; /* Apply margin-left only to the first item */
+  }
+  
+  .item-card:hover {
+    border-color: #007bff;
+    cursor: pointer;
+  }
+  
+  .item-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .item-details {
+    padding: 10px;
+  }
+  
