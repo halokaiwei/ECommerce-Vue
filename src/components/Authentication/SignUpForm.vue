@@ -40,7 +40,7 @@
 
   const submitForm = async () => {
     if (passwordError.value) {
-        return;
+        alert("Passwords do not match");
     }
     try {
         const response = await axios.post('http://localhost/Server/signUp.php', {

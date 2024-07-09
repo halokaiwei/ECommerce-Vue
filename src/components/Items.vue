@@ -4,7 +4,7 @@
       <ul class="item-list">
         <li v-for="item in items" :key="item.id" class="item-card">
           <div class="item-image">
-            <img :src="item.image" alt="Item Image" />
+            <img :src="item.images" alt="Item Image" />
           </div>
           <div class="item-details">
             <h4>{{ item.name }}</h4>
@@ -19,8 +19,9 @@
 <script setup lang="ts">
 import {ref,onMounted} from 'vue'
 import axios from 'axios';
+import {type items} from '@/types/index'
 
-const items = ref([]);
+const items = ref<items[]>([]);
 
 onMounted(() => {
   getItems();
@@ -30,14 +31,14 @@ const getItems = async() => {
   try {
     const response = await axios.get('http://localhost/Server/getItems.php');
     if (response.data.success) {
-      items.value = response.data.items;
-      console.log("Success getting items: ", response);
-    } else {
-      console.error(response.data.message);
-      }
-    } catch (error) {
+          items.value = response.data.items;
+          console.log("Success getting items: ", response);
+      } else {
+          console.error(response.data.message);
+        }
+      } catch (error) {
       console.error('Error during getItems:', error);
-  }
+    }
 }
 
 </script>

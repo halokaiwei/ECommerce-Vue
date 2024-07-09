@@ -12,32 +12,39 @@
       </div>
       <div>
         <label>Role: </label>
-        <span>{{ user?.role }}</span>
+        <span>{{ user?.role }} </span>
       </div>
       <div>
         <label>User Image: </label>
-        <img v-if="user?.image" src="" alt="User Image" style="max-width: 200px; height: auto;">
+        <img v-if="user?.image" :src="user.image" alt="User Image" style="max-width: 200px; height: auto;">
         <span v-else>No image uploaded</span>
       </div>
       <br/>
       <div class="vertical-buttons">
-        <button @click="toggleEditPassword">Change Password</button>
+        <button v-if="!showEditPassword && !showEditImage" @click="toggleEditPassword">Change Password</button>
         <form v-if="showEditPassword" @submit.prevent="updatePassword">
-          <h3>Edit Password</h3>
+          <h3>Edit Password <button @click="toggleEditPassword">Cancel</button></h3>
+          <br>
+          <input type="password" class="editPassword" v-model="oldPassword" placeholder="Old Password" required>
+          <br>
           <input type="password" class="editPassword" v-model="password" placeholder="New Password" required>
           <br>
           <input type="password" class="editPassword" v-model="confirmPassword" placeholder="Confirm Password" required>
           <br>
+          <div v-if="passwordError" class="error">{{ passwordError }}</div>
+          <br>
           <button type="submit">Update Password</button>
         </form>
-        <button @click="toggleEditImage">Change Profile Picture</button>
+        
+        <button v-if="!showEditPassword && !showEditImage" @click="toggleEditImage">Change Profile Picture</button>
         <form v-if="showEditImage" @submit.prevent="uploadImage" enctype="multipart/form-data">
-          <h3>Upload User Image</h3>
+          <h3>Upload User Image<button @click="toggleEditImage">Cancel</button></h3>
           <input type="file" accept="image/*" @change="handleFileUpload">
           <br>
           <button type="submit">Upload Image</button>
         </form>
-        <button @click="transferToMerchant">Transfer to Merchant Role</button>
+
+        <button v-if="!showEditPassword && !showEditImage" @click="transferToMerchant">Transfer to Merchant Role</button>
       </div>
     </div>
   </div>
@@ -52,32 +59,48 @@ const userStore = useAuthStore();
 const user = computed(() => userStore.getUser);
 const showEditPassword = ref(false);
 const showEditImage = ref(false);
+const oldPassword = ref('');
 const password = ref('');
 const confirmPassword = ref('');
 const imageFile = ref<File | null>(null);
 
 const toggleEditPassword = () => {
   showEditPassword.value = !showEditPassword.value;
+  showEditImage.value = false;
 };
 
 const toggleEditImage = () => {
   showEditImage.value = !showEditImage.value;
+  showEditPassword.value = false;
 };
 
-const updatePassword = async () => {
-  if (password.value !== confirmPassword.value) {
-    alert('Passwords do not match');
-    return;
-  }
+const passwordError = computed(() => {
+  return password.value !== confirmPassword.value ? 'Passwords do not match' : '';
+});
 
+const updatePassword = async () => {
+  if (passwordError.value) {
+      alert('Passwords do not match');
+      return;
+  }
   try {
-    await axios.post('/api/updatePassword', {
-      password: password.value
+    const response = await axios.post('http://localhost/Server/updatePw.php', {
+        oldPassword: oldPassword.value,
+        newPassword: password.value,
+        username: user.value?.username,
     });
-    alert('Password updated successfully');
+    if (response.data.success) {
+        alert('Password updated successfully');
+        oldPassword.value = '';
+        password.value = '';
+        confirmPassword.value = '';
+        showEditPassword.value = false;
+    } else {
+        alert(response.data.message || 'Failed to update password');
+    }
   } catch (error) {
     console.error('Error updating password:', error);
-    alert('Failed to update password');
+      alert('Failed to update password');
   }
 };
 
@@ -107,6 +130,7 @@ const uploadImage = async () => {
     if (userStore.user) {
       userStore.user.image = response.data.imageUrl;
     }
+    showEditImage.value = false;
   } catch (error) {
     console.error('Error uploading image:', error);
     alert('Failed to upload image');
@@ -198,5 +222,8 @@ button:hover {
   button[type="submit"]:hover {
     background-color: #0056b3;
   }
+}
+.error {
+    color: red;
 }
 </style>

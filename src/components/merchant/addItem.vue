@@ -65,6 +65,7 @@
       });
       if (response.data.status === 'success') {
             alert('Item created successfully');
+            console.log('response',response);
             // Reset the form fields
             itemName.value = '';
             itemDescription.value = '';

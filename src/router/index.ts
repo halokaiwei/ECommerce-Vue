@@ -2,6 +2,7 @@ import SignInForm from '@/components/Authentication/SignInForm.vue'
 import SignUpForm from '@/components/Authentication/SignUpForm.vue'
 import Profile from '@/components/myProfile.vue'
 import Wishlist from '@/components/Wishlist.vue'
+import addItem from '@/components/merchant/addItem.vue'
 import Home from '@/components/Home.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -38,6 +39,10 @@ import { createRouter, createWebHistory } from 'vue-router'
             path:'/home',
             component:Home
         },
+        {
+            path:'/add-item',
+            component:addItem
+        }
 
 
 
