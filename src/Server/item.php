@@ -2,7 +2,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 
-//add new items, item images
+//add new items, itemimages
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $servername = "localhost";
     $username = "root";

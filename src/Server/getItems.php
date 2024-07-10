@@ -1,11 +1,8 @@
 <?php
-
-//允许的请求头
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 
-//连接数据库
 $host = 'localhost';
 $dbname = 'shopdb';
 $username = 'root';
@@ -42,7 +39,8 @@ try {
         }
         // 这个item是已经和images.image_path JOIN了的，所以item里面会有image_path，这里看的是如果image_path存在（也就是和images表JOIN了后，image_path有数据），就把image_path数据放进去groupItems，因为等下要返回
         if($item['image_path']) {
-            $groupedItems[$item['id']]['images'][] = $item['image_path'];
+            $baseURL = 'http://localhost/Server/';
+            $groupedItems[$item['id']]['images'][] = $baseURL . $item['image_path'];
         }
     }
 

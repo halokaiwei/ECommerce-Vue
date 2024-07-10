@@ -3,10 +3,10 @@ import { defineStore } from 'pinia';
 export const useAuthStore = defineStore('auth', {
   state: () => ({
     isLoggedIn: !!localStorage.getItem('token'),
-    user: JSON.parse(localStorage.getItem('user') || 'null') as null | { username: string; email: string; role: string; image: Blob | null },
+    user: JSON.parse(localStorage.getItem('user') || 'null') as null | { username: string; email: string; role: string; image: string | null },
   }),
   actions: {
-    login(user: { username: string; email: string; role: string; image: Blob | null }) {
+    login(user: { username: string; email: string; role: string; image: string | null }) {
       this.isLoggedIn = true;
       this.user = user;
       localStorage.setItem('user', JSON.stringify(user));

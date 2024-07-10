@@ -2,7 +2,7 @@
       <!-- Item container -->
       <div class="item-container">
       <ul class="item-list">
-        <li v-for="item in items" :key="item.id" class="item-card">
+        <li v-for="item in items" :key="item.id" class="item-card" @click="goToItemDetail(item.id)">
           <div class="item-image">
             <img :src="item.images" alt="Item Image" />
           </div>
@@ -20,6 +20,7 @@
 import {ref,onMounted} from 'vue'
 import axios from 'axios';
 import {type items} from '@/types/index'
+import router from '@/router';
 
 const items = ref<items[]>([]);
 
@@ -41,6 +42,9 @@ const getItems = async() => {
     }
 }
 
+const goToItemDetail = (itemId: number) => {
+  router.push({ path: `/item/${itemId}` });
+};
 </script>
 <style>
   .item-container {

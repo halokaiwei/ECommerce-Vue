@@ -2,6 +2,7 @@ import SignInForm from '@/components/Authentication/SignInForm.vue'
 import SignUpForm from '@/components/Authentication/SignUpForm.vue'
 import Profile from '@/components/myProfile.vue'
 import Wishlist from '@/components/Wishlist.vue'
+import itemDetail from '@/components/itemDetail.vue'
 import addItem from '@/components/merchant/addItem.vue'
 import Home from '@/components/Home.vue'
 import { createRouter, createWebHistory } from 'vue-router'
@@ -42,6 +43,11 @@ import { createRouter, createWebHistory } from 'vue-router'
         {
             path:'/add-item',
             component:addItem
+        },
+        {
+            name:'item-detail',
+            path:'/item/:id',
+            component:itemDetail
         }
 
 

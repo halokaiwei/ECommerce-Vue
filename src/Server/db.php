@@ -21,13 +21,22 @@ try {
         username VARCHAR(30) NOT NULL,
         password VARCHAR(255) NOT NULL,
         email VARCHAR(50) NOT NULL,
-        image BLOB,
         role ENUM('user', 'merchant') DEFAULT 'user',
         registerDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )";
     
     $conn->exec($sql);
     echo "Table 'users' created successfully<br>";
+
+    $sql = "CREATE TABLE profile_pictures (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        user_id INT NOT NULL,
+        image_path VARCHAR(255) NOT NULL DEFAULT 'src/assets/images/defaultPicture.png',
+        FOREIGN KEY (user_id) REFERENCES users(id)
+    )";
+
+    $conn->exec($sql);
+    echo "Table 'profile_pictures' created successfully<br>";
 
     $sql = "CREATE TABLE IF NOT EXISTS items (
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -36,7 +45,8 @@ try {
         description TEXT,
         price DECIMAL(10, 2) NOT NULL,
         added_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (merchant_id) REFERENCES users(id)
+        FOREIGN KEY (merchant_id) REFERENCES merchants(id)
+        -- shall be merchant(id)?
     )";
     
     $conn->exec($sql);
@@ -64,7 +74,7 @@ try {
     $conn->exec($sql);
     echo "Table 'wishlist' created successfully<br>";
 
-    $sql = "CREATE TABLE IF NOT EXISTS merchant (
+    $sql = "CREATE TABLE IF NOT EXISTS merchants (
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         user_id INT(6) UNSIGNED NOT NULL,
         company_name VARCHAR(100) NOT NULL,
@@ -75,7 +85,7 @@ try {
     )";
     
     $conn->exec($sql);
-    echo "Table 'merchant' created successfully<br>";
+    echo "Table 'merchants' created successfully<br>";
 
 } catch(PDOException $e) {
     echo $sql . "<br>" . $e->getMessage();
