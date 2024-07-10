@@ -1,14 +1,14 @@
 <template>
     <div id="signInForm">
       <form @submit.prevent="submitForm">
-        <h2>Sign in to purchase or selling your products!</h2>
-        <input type="text" v-model="username" placeholder="Enter username" />
-        <br />
-        <input type="password" v-model="password" placeholder="Enter password" />
-        <div id="signUp">
-          Haven't have an account? <router-link :to="{name:'SignUp'}">Sign up</router-link> with us!
-        </div>
-        <input type="submit" />
+          <h2>Sign in to purchase or selling your products!</h2>
+          <input type="text" v-model="username" placeholder="Enter username" />
+          <br />
+          <input type="password" v-model="password" placeholder="Enter password" />
+          <div id="signUp">
+            Haven't have an account? <router-link :to="{name:'SignUp'}">Sign up</router-link> with us!
+          </div>
+          <input type="submit" />
       </form>
     </div>
 
@@ -35,10 +35,9 @@
         });
         if (response.data.success) {
             alert(response.data.message);
-            console.log('res',response.data.user);
             authStore.login(response.data.user);
-            console.log("username",username.value);
-            console.log("role",response.data.role);
+            console.log("logged in username: ",username.value);
+            console.log("logged in role: ",response.data.role);
             router.push('/home');
         } else {
             alert(response.data.message);

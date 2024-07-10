@@ -15,20 +15,20 @@ try {
     $data = json_decode(file_get_contents('php://input'), true);
     $oldPassword = $data['oldPassword'];
     $newPassword = $data['newPassword'];
-    $username = $data['username']; // 从 session 或其他方式获取当前用户的用户名
+    $userID= $data['userID']; // 从 session 或其他方式获取当前用户的用户名
 
     // 获取当前用户的旧密码散列值
-    $stmt = $conn->prepare("SELECT password FROM users WHERE username = :username");
-    $stmt->bindParam(':username', $username);
+    $stmt = $conn->prepare("SELECT password FROM users WHERE id = :userID");
+    $stmt->bindParam(':userID', $userID);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($oldPassword, $user['password'])) {
         // 更新密码
         $newPasswordHash = password_hash($newPassword, PASSWORD_BCRYPT);
-        $updateStmt = $conn->prepare("UPDATE users SET password = :newPassword WHERE username = :username");
+        $updateStmt = $conn->prepare("UPDATE users SET password = :newPassword WHERE id = :userID");
         $updateStmt->bindParam(':newPassword', $newPasswordHash);
-        $updateStmt->bindParam(':username', $username);
+        $updateStmt->bindParam(':userID', $userID);
         $updateStmt->execute();
 
         echo json_encode(['success' => true, 'message' => 'Password updated successfully']);

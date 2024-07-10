@@ -3,7 +3,6 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 
-// Replace with your database credentials
 $host = 'localhost';
 $db = 'shopdb';
 $user = 'root';
@@ -13,16 +12,16 @@ try {
     $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $username = $_GET['username'];
+    $user_id = $_GET['user_id'];
 
     $query = "SELECT u.id, u.username, u.email, u.role, 
                      COALESCE(p.image_path, 'src/assets/images/defaultPicture.png') as image 
               FROM users u 
               LEFT JOIN profile_pictures p ON u.id = p.user_id 
-              WHERE u.username = :username";
+              WHERE u.id = :user_id";
 
     $stmt = $pdo->prepare($query);
-    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_STR);
     $stmt->execute();
 
     $user = $stmt->fetch(PDO::FETCH_ASSOC);

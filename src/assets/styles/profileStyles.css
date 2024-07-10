@@ -1,0 +1,151 @@
+@media screen and (max-width: 300px) {
+    html {
+      font-size: 6px;
+    }
+  }
+  
+  @media screen and (max-width: 414px) {
+    html {
+      font-size: 8px;
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    html {
+      font-size: 12px;
+    }
+  }
+  
+  @media screen and (max-width: 767px) {
+    html {
+      font-size: 14px;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    html {
+      font-size: 14px;
+    }
+  }
+  
+  @media screen and (max-width: 992px) {
+    html {
+      font-size: 16px;
+    }
+  }
+  
+  @media screen and (max-width: 1200px) {
+    html {
+      font-size: 18px;
+    }
+  }
+  
+  .profile-container {
+    max-width: 40%;
+    margin: auto;
+    padding: 2rem;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .profile-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .user-details {
+    flex: 1;
+    padding-right: 0.5rem;
+  }
+  
+  .user-image {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .user-image img {
+    width: 10rem;
+    height: auto;
+  }
+  
+  .vertical-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    gap: 1rem;
+  }
+  
+  button {
+    padding: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 700px) {
+    .profile-container {
+      width: 100%;
+      max-width: 100%;
+    }
+  
+    .home-container {
+      width: 100%;
+    }
+  
+    .navigation {
+      width: 30%;
+      box-shadow: none;
+      margin-bottom: 20px;
+    }
+  
+    .editPassword {
+      width: 120%;
+      padding: 0.6rem;
+      margin-bottom: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+  
+    .editPassword:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+  
+    button[type='submit'] {
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+  
+    button[type='submit']:hover {
+      background-color: #0056b3;
+    }
+  }
+  
+  .preview-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-top: 10px;
+  }
+  
+  .error {
+    color: red;
+  }

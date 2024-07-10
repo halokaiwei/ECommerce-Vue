@@ -26,18 +26,15 @@ try {
         exit();
     }
 
-    // Insert new user into users table
     $stmt = $conn->prepare("INSERT INTO users (username, password, email) VALUES (:username, :password, :email)");
     $stmt->bindParam(':username', $userN);
     $stmt->bindParam(':password', $passW);
     $stmt->bindParam(':email', $email);
     $stmt->execute();
 
-    // Get the newly inserted user's ID
     $user_id = $conn->lastInsertId();
 
-    // Insert default image path into profile_pictures table
-    $defaultImagePath = 'src/assets/images/defaultPicture.png'; // Adjust path as needed
+    $defaultImagePath = 'src/assets/images/defaultPicture.png'; 
     $stmt = $conn->prepare("INSERT INTO profile_pictures (user_id, image_path) VALUES (:user_id, :image_path)");
     $stmt->bindParam(':user_id', $user_id);
     $stmt->bindParam(':image_path', $defaultImagePath);

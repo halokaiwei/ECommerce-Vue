@@ -1,17 +1,17 @@
 <template>
-      <!-- Item container -->
+      <!-- contain item details -->
       <div class="item-container">
-      <ul class="item-list">
-        <li v-for="item in items" :key="item.id" class="item-card" @click="goToItemDetail(item.id)">
-          <div class="item-image">
-            <img :src="item.images" alt="Item Image" />
-          </div>
-          <div class="item-details">
-            <h4>{{ item.name }}</h4>
-            <p>Price: {{ item.price }}</p>
-          </div>
-        </li>
-      </ul>
+        <ul class="item-list">
+          <li v-for="item in items" :key="item.id" class="item-card" @click="goToItemDetail(item.id)">
+            <div class="item-image">
+              <img :src="item.images[0]" alt="Item Image" />
+            </div>
+            <div class="item-details">
+              <h4>{{ item.name }}</h4>
+              <p>Price: {{ item.price }}</p>
+            </div>
+          </li>
+        </ul>
     </div>
 
 
@@ -37,7 +37,8 @@ const getItems = async() => {
       } else {
           console.error(response.data.message);
         }
-      } catch (error) {
+      } 
+      catch (error) {
       console.error('Error during getItems:', error);
     }
 }
@@ -105,7 +106,7 @@ const goToItemDetail = (itemId: number) => {
     width: calc(20% - 20px); /* 20% width with margin */
     margin-right: 1rem;
     margin-bottom: 1rem;
-    height: 20rem;
+    height: auto;
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     border-radius: 4px;
