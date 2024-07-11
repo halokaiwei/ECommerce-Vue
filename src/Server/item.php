@@ -13,7 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $stmt = $conn->prepare("INSERT INTO items (item_name, description, price) VALUES (:name, :description, :price)");
+        $stmt = $conn->prepare("INSERT INTO items (item_name, description, price) VALUES 
+                                                            (:name, :description, :price)");
         $stmt->bindParam(':name', $_POST['name']);
         $stmt->bindParam(':description', $_POST['description']);
         $stmt->bindParam(':price', $_POST['price']);

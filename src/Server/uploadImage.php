@@ -25,7 +25,7 @@ try {
             $stmt->bindParam(':user_id', $user_id);
             $stmt->execute();
 
-            echo json_encode(['success' => true, 'imageUrl' => 'http://localhost/Server/' . $imagePath]); // adjust the base URL as needed
+            echo json_encode(['success' => true, 'imageUrl' => 'http://localhost/Server/' . $imagePath]); 
         } else {
             echo json_encode(['success' => false, 'message' => 'Failed to upload image']);
         }
