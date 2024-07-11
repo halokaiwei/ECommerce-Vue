@@ -13,6 +13,10 @@
             <h2>{{ item.name }}</h2>
             <p>{{ item.description }}</p>
             <p>Price: {{ item.price }}</p>
+            <button @click="addToWishlist(item.id)">
+                <img :src="wishlistIconClass"></img>
+            </button>
+
         </div>
     </div>
 </template>
@@ -21,6 +25,10 @@
 import { ref, onMounted, computed } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
+import { useAuthStore } from '@/stores/useAuthStore';
+import heartSolid from '@/assets/images/heart-solid-24.png';
+import heartRegular from '@/assets/images/heart-regular-24.png';
+import { couldStartTrivia } from 'typescript';
 
 const item = ref({
     id: 0,
@@ -30,12 +38,16 @@ const item = ref({
     images: []
 });
 
+const authStore = useAuthStore();
+const userId = authStore.getUser?.id;
 const currentImageIndex = ref(0);
+const isInWishlist = ref(false);
 const route = useRoute();
 
 onMounted(() => {
     const itemId = Number(route.params.id);
     getItem(itemId);
+    // checkWishlist(itemId);
 });
 
 const getItem = async (itemId: number) => {
@@ -52,6 +64,40 @@ const getItem = async (itemId: number) => {
     }
 };
 
+// const checkWishlist = async (itemId: number) => {
+//     try {
+//         const response = await axios.get(`http://localhost/Server/checkWishlist.php`, { 
+//             params: { user_id: userId, item_id: itemId } 
+//         });
+//         if (response.data.success) {
+//             isInWishlist.value = response.data.isInWishlist;
+//         } else {
+//             console.error(response.data.message);
+//         }
+//     } catch (error) {
+//         console.error('Error checking wishlist:', error);
+//     }
+// };
+
+const addToWishlist = async (itemId: number) => {
+    try {
+        console.log("userId:",userId);
+        console.log("itemId:",itemId);
+        const response = await axios.post('http://localhost/Server/addToWishlist.php', { 
+            user_id: userId, item_id: itemId 
+        });
+        console.log(response);
+        if (response.data.success) {
+            console.log("Item added to wishlist successfully");
+            isInWishlist.value = true;
+        } else {
+            console.error(response);
+        }
+    } catch (error) {
+        console.error('Error adding item to wishlist:', error);
+    }
+};
+
 const nextImage = () => {
     currentImageIndex.value = (currentImageIndex.value + 1) % item.value.images.length;
 };
@@ -62,6 +108,10 @@ const prevImage = () => {
 
 const currentImage = computed(() => {
     return item.value.images[currentImageIndex.value] || '';
+});
+
+const wishlistIconClass = computed(() => {
+    return isInWishlist.value ? heartSolid : heartRegular;
 });
 </script>
 
