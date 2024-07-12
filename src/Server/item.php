@@ -58,5 +58,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo json_encode(array('status' => 'error', 'message' => 'Only POST requests are allowed'));
     http_response_code(405);
 }
-
+$conn = null;
 ?>

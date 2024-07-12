@@ -81,6 +81,6 @@ try {
     $response['success'] = false;
     $response['message'] = 'Connection failed: ' . $e->getMessage();
 }
-
+$conn = null;
 echo json_encode($response);
 ?>
